@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-graduation-cap"></i> Smart Study Scheduler</h1>
+            <p>My personal productivity companion</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" data-tab="timetable">
+                <i class="fas fa-calendar-alt"></i> Timetable
+            </button>
+            <button class="nav-btn" data-tab="pomodoro">
+                <i class="fas fa-clock"></i> Pomodoro
+            </button>
+            <button class="nav-btn" data-tab="motivation">
+                <i class="fas fa-lightbulb"></i> Motivation
+            </button>
+            <button class="nav-btn" data-tab="progress">
+                <i class="fas fa-chart-line"></i> Progress
+            </button>
+            <button class="nav-btn" data-tab="music">
+                <i class="fas fa-music"></i> Music
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Timetable Section -->
+            <section id="timetable" class="tab-content active">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Dynamic Timetable Builder</h2>
+                    <p>Drag and drop to create your perfect study schedule</p>
+                </div>
+                
+                <div class="timetable-container">
+                    <div class="timetable-controls">
+                        <button id="add-task" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Task
+                        </button>
+                        <button id="clear-timetable" class="btn btn-secondary">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="timetable-grid">
+                        <div class="time-slots">
+                            <div class="time-slot">8:00 AM</div>
+                            <div class="time-slot">9:00 AM</div>
+                            <div class="time-slot">10:00 AM</div>
+                            <div class="time-slot">11:00 AM</div>
+                            <div class="time-slot">12:00 PM</div>
+                            <div class="time-slot">1:00 PM</div>
+                            <div class="time-slot">2:00 PM</div>
+                            <div class="time-slot">3:00 PM</div>
+                            <div class="time-slot">4:00 PM</div>
+                            <div class="time-slot">5:00 PM</div>
+                            <div class="time-slot">6:00 PM</div>
+                            <div class="time-slot">7:00 PM</div>
+                        </div>
+                        
+                        <div class="schedule-grid">
+                            <div class="day-column" data-day="monday">
+                                <div class="day-header">Monday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                            <div class="day-column" data-day="tuesday">
+                                <div class="day-header">Tuesday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                            <div class="day-column" data-day="wednesday">
+                                <div class="day-header">Wednesday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                            <div class="day-column" data-day="thursday">
+                                <div class="day-header">Thursday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                            <div class="day-column" data-day="friday">
+                                <div class="day-header">Friday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                            <div class="day-column" data-day="saturday">
+                                <div class="day-header">Saturday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                            <div class="day-column" data-day="sunday">
+                                <div class="day-header">Sunday</div>
+                                <div class="time-blocks"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pomodoro Section -->
+            <section id="pomodoro" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-clock"></i> Pomodoro Timer</h2>
+                    <p>Stay focused with the Pomodoro Technique</p>
+                </div>
+                
+                <div class="pomodoro-container">
+                    <div class="timer-display">
+                        <div class="timer-circle">
+                            <div class="timer-text">
+                                <span id="minutes">25</span>:<span id="seconds">00</span>
+                            </div>
+                            <div class="timer-label" id="timer-label">Work Time</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-controls">
+                        <button id="start-timer" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button id="pause-timer" class="btn btn-secondary" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button id="reset-timer" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                    
+                    <div class="timer-modes">
+                        <button class="mode-btn active" data-mode="work" data-time="25">
+                            <i class="fas fa-briefcase"></i> Work (25min)
+                        </button>
+                        <button class="mode-btn" data-mode="short-break" data-time="5">
+                            <i class="fas fa-coffee"></i> Short Break (5min)
+                        </button>
+                        <button class="mode-btn" data-mode="long-break" data-time="15">
+                            <i class="fas fa-couch"></i> Long Break (15min)
+                        </button>
+                    </div>
+                    
+                    <div class="productivity-tips">
+                        <h3><i class="fas fa-lightbulb"></i> Productivity Tips</h3>
+                        <div id="tip-content" class="tip-content">
+                            <p>Click "Get Tip" to receive personalized productivity advice!</p>
+                        </div>
+                        <button id="get-tip" class="btn btn-outline">
+                            <i class="fas fa-magic"></i> Get Tip
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Motivation Section -->
+            <section id="motivation" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-lightbulb"></i> Daily Motivation Generator</h2>
+                    <p>Get inspired with AI-powered motivation</p>
+                </div>
+                
+                <div class="motivation-container">
+                    <div class="motivation-card">
+                        <div class="motivation-header">
+                            <i class="fas fa-quote-left"></i>
+                            <h3>Today's Motivation</h3>
+                        </div>
+                        <div id="motivation-text" class="motivation-text">
+                            Click "Generate Motivation" to get your daily dose of inspiration!
+                        </div>
+                        <div class="motivation-actions">
+                            <button id="generate-motivation" class="btn btn-primary">
+                                <i class="fas fa-magic"></i> Generate Motivation
+                            </button>
+                            <button id="save-motivation" class="btn btn-outline">
+                                <i class="fas fa-heart"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="motivation-settings">
+                        <h3>Customize Your Motivation</h3>
+                        <div class="setting-group">
+                            <label for="motivation-type">Type:</label>
+                            <select id="motivation-type">
+                                <option value="general">General</option>
+                                <option value="academic">Academic</option>
+                                <option value="career">Career</option>
+                                <option value="fitness">Fitness</option>
+                                <option value="creative">Creative</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="motivation-tone">Tone:</label>
+                            <select id="motivation-tone">
+                                <option value="encouraging">Encouraging</option>
+                                <option value="energetic">Energetic</option>
+                                <option value="calm">Calm</option>
+                                <option value="challenging">Challenging</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> Progress Tracker</h2>
+                    <p>Track your study progress and achievements</p>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-overview">
+                        <div class="progress-card">
+                            <div class="progress-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="progress-info">
+                                <h3>Study Days</h3>
+                                <p id="study-days">0</p>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-card">
+                            <div class="progress-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="progress-info">
+                                <h3>Total Hours</h3>
+                                <p id="total-hours">0</p>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-card">
+                            <div class="progress-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="progress-info">
+                                <h3>Tasks Completed</h3>
+                                <p id="tasks-completed">0</p>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-card">
+                            <div class="progress-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="progress-info">
+                                <h3>Current Streak</h3>
+                                <p id="current-streak">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-charts">
+                        <div class="chart-container">
+                            <h3>Weekly Progress</h3>
+                            <canvas id="weekly-chart"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Daily Activity</h3>
+                            <div id="activity-heatmap" class="activity-heatmap"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-actions">
+                        <button id="export-progress" class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                        <button id="reset-progress" class="btn btn-secondary">
+                            <i class="fas fa-trash"></i> Reset Progress
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Music Section -->
+            <section id="music" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-music"></i> Study Music Playlist</h2>
+                    <p>Get personalized music recommendations based on your mood</p>
+                </div>
+                
+                <div class="music-container">
+                    <div class="mood-selector">
+                        <h3>How are you feeling today?</h3>
+                        <div class="mood-buttons">
+                            <button class="mood-btn" data-mood="focused">
+                                <i class="fas fa-brain"></i>
+                                <span>Focused</span>
+                            </button>
+                            <button class="mood-btn" data-mood="energetic">
+                                <i class="fas fa-bolt"></i>
+                                <span>Energetic</span>
+                            </button>
+                            <button class="mood-btn" data-mood="calm">
+                                <i class="fas fa-leaf"></i>
+                                <span>Calm</span>
+                            </button>
+                            <button class="mood-btn" data-mood="creative">
+                                <i class="fas fa-palette"></i>
+                                <span>Creative</span>
+                            </button>
+                            <button class="mood-btn" data-mood="motivated">
+                                <i class="fas fa-fire"></i>
+                                <span>Motivated</span>
+                            </button>
+                            <button class="mood-btn" data-mood="relaxed">
+                                <i class="fas fa-cloud"></i>
+                                <span>Relaxed</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-container">
+                        <div class="playlist-header">
+                            <h3 id="playlist-title">Select your mood to get started</h3>
+                            <p id="playlist-description">Choose a mood above to see personalized music recommendations</p>
+                        </div>
+                        
+                        <div id="playlist-tracks" class="playlist-tracks">
+                            <div class="empty-playlist">
+                                <i class="fas fa-music"></i>
+                                <p>Your personalized playlist will appear here</p>
+                            </div>
+                        </div>
+                        
+                        <div class="playlist-actions">
+                            <button id="refresh-playlist" class="btn btn-outline">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button id="save-playlist" class="btn btn-primary">
+                                <i class="fas fa-heart"></i> Save Playlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="task-title">Task Title:</label>
+                    <input type="text" id="task-title" placeholder="Enter task title">
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description:</label>
+                    <textarea id="task-description" placeholder="Enter task description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-duration">Duration (hours):</label>
+                    <input type="number" id="task-duration" min="0.5" max="8" step="0.5" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="task-color">Color:</label>
+                    <input type="color" id="task-color" value="#4CAF50">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-task" class="btn btn-primary">Save Task</button>
+                <button id="cancel-task" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
